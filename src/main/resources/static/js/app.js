@@ -5,6 +5,7 @@ app.controller('TodoController', function($http) {
 	self.todo = {};
 	self.todos = [];
 	
+	
 	$http.get('/api/todos')
 	    .then(function(success) {
 	    	self.todos = success.data;
@@ -13,6 +14,11 @@ app.controller('TodoController', function($http) {
 	    });
 	
 	self.saveTodo = function() {
+		
+		if(self.todo.message == null) {
+			return;
+		}
+		
 		var data = {
 		    message: self.todo.message
 		};
@@ -25,4 +31,23 @@ app.controller('TodoController', function($http) {
 		    });
 		
 	};
+	
+	self.deleteTodo = function(id) {
+		
+		$http.delete('/api/todos/' + id)
+		    .then(function(success) {
+		    	
+		    	self.todos.forEach(function(item, index){
+		    		if(item.id == id) {
+		    			self.todos.splice(index, 1);
+		    			return;
+		    		}
+		    	}, this);
+		    	
+		    }, function(error) {
+		    	console.error(error);
+		    });
+		
+	};
+	
 });
