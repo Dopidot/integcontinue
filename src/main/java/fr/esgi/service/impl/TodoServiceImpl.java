@@ -30,15 +30,20 @@ public class TodoServiceImpl implements TodoService {
 	}
 
 	@Override
-	public Todo findTodo(Long id) {
+	public Todo findTodo(Long id) throws Exception {
 		Optional<Todo> todo = todoRepository.findById(id);
 		
-		return todo.get();
+		if (todo.isPresent()) {
+			return todo.get();
+		} else {
+			throw new Exception("Erreur");
+		}
 	}
 
 	@Override
-	public void deleteTodo(Long id) {
+	public boolean deleteTodo(Long id) {
 		todoRepository.deleteById(id);
+		return true;
 	}
 	
 }

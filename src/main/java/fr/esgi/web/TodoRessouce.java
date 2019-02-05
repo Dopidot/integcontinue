@@ -37,7 +37,7 @@ public class TodoRessouce {
 	}
 
 	@GetMapping(value = "/todos/{id}")
-	public Todo findTodo(@PathVariable Long id) {
+	public Todo findTodo(@PathVariable Long id) throws Exception {
 		return todoService.findTodo(id);
 	}
 
