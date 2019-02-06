@@ -83,7 +83,7 @@ public class TodoTest {
 		OngoingStubbing<Todo> when = Mockito.when(todoService.findTodo(id));
 
 		// Then
-		when.thenReturn(todo).thenThrow(Exception.class);
+		when.thenReturn(null).thenThrow(Exception.class);
 	}
 	
 	@Test
@@ -95,7 +95,7 @@ public class TodoTest {
 		OngoingStubbing<Boolean> when = Mockito.when(todoService.deleteTodo(id));
 
 		// Then
-		when.thenReturn(true);
+		when.thenReturn(false);
 	}
 	
 
