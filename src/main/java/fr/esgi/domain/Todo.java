@@ -12,9 +12,10 @@ public class Todo {
     private Long id;
     private String message;
     
-	public Todo() {
-		super();
-	}
+    /*
+     *  DEFAULT constructor
+     */
+	public Todo() {}
 
 	/**
 	 * @return the id
