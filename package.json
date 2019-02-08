@@ -1,0 +1,27 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Dopidot/integcontinue.git",
+  "author": "Christopher LUKOMBO <christopher.lukombo@outlook.fr>",
+  "license": "MIT",
+  "cacheDirectories": [
+    "node_modules"
+  ],
+  "dependencies": {
+    "jasmine-core": "2.5.0",
+    "jasmine-reporters": "2.2.0",
+    "karma": "1.7.1",
+    "karma-chrome-launcher": "2.2.0",
+    "karma-coverage": "1.1.1",
+    "karma-jasmine": "1.1.0",
+    "karma-junit-reporter": "1.2.0",
+    "karma-phantomjs-launcher": "1.0.4",
+    "karma-script-launcher": "1.0.0",
+    "angular": "1.7.7",
+    "angular-mocks": "1.5.8"
+  },
+  "scripts": {
+    "test": "karma start"
+  }
+}
