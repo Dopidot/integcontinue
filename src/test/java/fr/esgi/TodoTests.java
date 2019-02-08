@@ -87,7 +87,7 @@ public class TodoTests {
 	public void createTodo() throws Exception {
 		int databaseSizeBeforeCreate = todoRepository.findAll().size();
 
-		// Create the Classroom
+		// Create the Todo
 		TodoDTO todoDTO = todoMapper.todoToTodoDTO(todo);
 		restTodoMockMvc.perform(post("/api/todos")
 				.contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -102,7 +102,7 @@ public class TodoTests {
 	}
 
 	@Test
-	@Transactional
+	@Transactional 
 	public void getAllTodos() throws Exception {
 		// Initialize the database
 		todoRepository.saveAndFlush(todo);
@@ -139,7 +139,7 @@ public class TodoTests {
 		// Update the todo
 		Long id = todo.getId();
 		Optional<Todo> todo = todoRepository.findById(id);
-		// Disconnect from session so that the updates on updatedClassroom are not directly saved in db
+		// Disconnect from session so that the updates on updatedTodo are not directly saved in db
 		em.detach(todo.get());
 		todo.get()
 		.setMessage("efe");
@@ -150,10 +150,10 @@ public class TodoTests {
 				.content(TestUtil.convertObjectToJsonBytes(todoDTO)))
 		.andExpect(status().isOk());
 
-		// Validate the Classroom in the database
-		List<Todo> classroomList = todoRepository.findAll();
-		assertThat(classroomList).hasSize(databaseSizeBeforeUpdate);
-		Todo testTodo = classroomList.get(classroomList.size() - 1);
+		// Validate the Todo in the database
+		List<Todo> todoList = todoRepository.findAll();
+		assertThat(todoList).hasSize(databaseSizeBeforeUpdate);
+		Todo testTodo = todoList.get(todoList.size() - 1);
 		assertThat(testTodo.getMessage()).isEqualTo(UPDATED_MESSAGE);
 	}
 
@@ -164,7 +164,7 @@ public class TodoTests {
 		todoRepository.saveAndFlush(todo);
 		int databaseSizeBeforeDelete = todoRepository.findAll().size();
 
-		// Get the classroom
+		// Get the todo
 		restTodoMockMvc.perform(delete("/api/todos/{id}", todo.getId())
 				.accept(TestUtil.APPLICATION_JSON_UTF8))
 		.andExpect(status().isOk());
