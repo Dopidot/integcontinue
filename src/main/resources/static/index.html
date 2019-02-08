@@ -23,10 +23,16 @@
                     <tbody>
                         <tr ng-repeat="todo in self.todos">
                         <th>{{todo.id}}</th>
-                        <td style="text-align:left;">{{todo.message}}</td>
+                        <td style="text-align:left;">
+                            <span ng-if="!self.isEditing[$index]">{{todo.message}}</span>
+                            <input ng-if="self.isEditing[$index]" id="editMessage" type="text" class="form-control" ng-model="self.todo.newMessage" placeholder="Nom du produit">
+                        </td>
                         <td>
-                            <button type="button" class="btn btn-primary">Modifier</button>
-                            <button type="button" class="btn btn-danger" ng-click="self.deleteTodo(todo.id)">Supprimer</button>
+                            <button ng-if="!self.isEditing[$index]" type="button" class="btn btn-primary" ng-click="self.isEditing[$index] = true; self.todo.newMessage = todo.message;">Modifier</button>
+                            <button ng-if="!self.isEditing[$index]" type="button" class="btn btn-danger" ng-click="self.deleteTodo(todo.id)">Supprimer</button>
+
+                            <button ng-if="self.isEditing[$index]" type="button" class="btn btn-success" ng-click="self.isEditing[$index] = false; self.saveModification(todo.id, self.todo.newMessage);">Save</button>
+                            <button ng-if="self.isEditing[$index]" type="button" class="btn btn-danger" ng-click="self.isEditing[$index] = false;">Cancel</button>
                         </td>
                         </tr>
                     </tbody>

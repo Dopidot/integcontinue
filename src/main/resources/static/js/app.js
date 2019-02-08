@@ -50,4 +50,34 @@ app.controller('TodoController', function($http) {
 		
 	};
 	
+	self.saveModification = function(id, newMessage) {
+
+		if(id == null || newMessage == null) {
+			return;
+		}
+		
+		var data = {
+			id: id,
+		    message: newMessage
+		};
+		
+		$http.put('/api/todos', data)
+		    .then(function(success) {
+		    	
+		    	
+		    	
+		    	self.todos.forEach(function(item, index){
+		    		if(item.id == id) {
+		    			item.message = newMessage;
+		    			
+		    			return;
+		    		}
+		    	}, this);
+		    	
+		    }, function(error) {
+		    	console.error(error);
+		    });
+		
+	};
+	
 });
