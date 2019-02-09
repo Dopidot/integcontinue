@@ -25,4 +25,5 @@
 /build/
 
 /node_modules/
+/node/
 yarn.lock

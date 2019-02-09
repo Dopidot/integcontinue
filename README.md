@@ -11,10 +11,21 @@ Notre groupe est composé des personnes suivantes :
 - Mickael MOREIRA
 - Guillaume TAKO
 
+URL sonar : 
+https://sonarcloud.io/organizations/integ/projects
+
 
 Pour démarrer l'analyse sonar lancer la commande :
 
 mvn sonar:sonar \
+  -Dsonar.projectKey=integ \
+  -Dsonar.organization=integ \
+  -Dsonar.host.url=https://sonarcloud.io \
+  -Dsonar.login=e7a9f87ecbc37f8459da7b3e493a18f4d017452a
+  
+L'option -Pprod permet de lancer le profile prod en exécutant les tests unitaires coté front également :
+  
+mvn clean package -Pprod sonar:sonar \
   -Dsonar.projectKey=integ \
   -Dsonar.organization=integ \
   -Dsonar.host.url=https://sonarcloud.io \
