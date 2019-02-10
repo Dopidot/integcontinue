@@ -24,6 +24,8 @@ module.exports = function (config) {
         files: [
             'node_modules/angular/angular.min.js',
             'node_modules/angular-mocks/angular-mocks.js',
+            'src/test/javascript/spec/helpers/module.js',
+            'src/test/javascript/spec/helpers/httpBackend.js',
             'src/main/resources/static/**/*.+(js|html)',
             'src/main/resources/static/index.html',
             'src/test/javascript/spec/todo.controller.spec.js',

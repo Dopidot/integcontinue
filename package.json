@@ -19,7 +19,7 @@
     "karma-phantomjs-launcher": "1.0.4",
     "karma-script-launcher": "1.0.0",
     "angular": "1.7.7",
-    "angular-mocks": "1.5.8"
+    "angular-mocks": "1.7.7"
   },
   "scripts": {
     "test": "karma start"

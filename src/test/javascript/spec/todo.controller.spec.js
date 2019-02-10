@@ -1,22 +1,40 @@
-describe('TodoController', function() {
-    var controller;
-    beforeEach(function() {
-      module('app');
-      inject(function($injector) {
-        $http = $injector.get('$http');
-        controller = $injector.get('$controller')('TodoController', {$http: $http});
-      });
-    });
+'use strict';
 
-    describe('Initialization of todos', function() {
-      it('Should check if todos exist', function() {
-        expect(controller.todos.length).toBe(0);
-      });
-    });
+describe('Controller Tests', function() {
+    beforeEach(mockApiPOSTTodoCall);
+    beforeEach(mockApiGETTodoCall);
 
-    describe('Initialization of todo', function() {
-      it('Should check if todo exist', function() {
-        expect(controller.todo).not.toBe(null);
-      });
+    describe('TodoController', function() {
+
+        var $scope, $httpBackend, $q;
+        var MockTodo;
+        var createController;
+
+        beforeEach(inject(function($injector) {
+            $scope = $injector.get('$rootScope').$new();
+            $q = $injector.get('$q');
+            $httpBackend = $injector.get('$httpBackend');
+
+            MockTodo = jasmine.createSpyObj('MockTodo', ['saveTodo']);
+            var locals = {
+                '$scope': $scope,
+            };
+            createController = function() {
+                $injector.get('$controller')('TodoController as vm', locals);
+            }
+        }));
+
+        it('should show error if field do not match', function() {
+            //GIVEN
+            createController();
+            $scope.vm.todo = {};
+            $scope.vm.todos = [];
+            //WHEN
+            $scope.vm.saveTodo();
+            //THEN
+            expect($scope.vm.doNotMatch).toBe('ERROR');
+            expect($scope.vm.error).toBeNull();
+            expect($scope.vm.success).toBeNull();
+        });
     });
 });
