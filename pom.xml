@@ -294,7 +294,7 @@
                             <execution>
                                 <id>yarn install</id>
                                 <goals>
-                                    <goal>yarn/dist/bin/yarn</goal>
+                                    <goal>yarn</goal>
                                 </goals>
                                 <configuration>
                                     <arguments>install</arguments>
