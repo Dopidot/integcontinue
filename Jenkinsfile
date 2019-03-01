@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn clean -DskipTests package'
             }
         }
         stage('Test') {
@@ -18,11 +18,6 @@ pipeline {
                     -Dsonar.organization=integ \
                     -Dsonar.host.url=https://sonarcloud.io \
                     -Dsonar.login=e7a9f87ecbc37f8459da7b3e493a18f4d017452a'
-            }
-            post {
-                always {
-                    jacoco 'target/test-results/coverage/jacoco/*.xml'
-                }
             }
         }
     }
