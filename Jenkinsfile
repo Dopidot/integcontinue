@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'mvn test -Pprod sonar:sonar \
+                sh 'mvn test sonar:sonar \
                     -Dsonar.projectKey=integ \
                     -Dsonar.organization=integ \
                     -Dsonar.host.url=https://sonarcloud.io \
