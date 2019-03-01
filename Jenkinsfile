@@ -21,7 +21,6 @@ pipeline {
             }
             post {
                 always {
-                    karma 'target/test-results/karma/*.xml'
                     jacoco 'target/test-results/coverage/jacoco/*.xml'
                 }
             }
