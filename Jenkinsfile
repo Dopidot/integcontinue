@@ -8,12 +8,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn clean -DskipTests package'
+                sh 'mvn -DskipTests  clean package'
             }
         }
         stage('Test') {
             steps {
-                sh 'mvn test sonar:sonar \
+                sh 'mvn test -Pprod sonar:sonar \
                     -Dsonar.projectKey=integ \
                     -Dsonar.organization=integ \
                     -Dsonar.host.url=https://sonarcloud.io \
